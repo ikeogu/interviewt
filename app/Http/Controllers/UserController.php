@@ -61,7 +61,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+    
+        return view('dashboard', ['user'=>$user]);
+        
     }
 
     /**
@@ -71,9 +74,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $id)
     {
-        //
+        $user = User::findOrFail('id', $id)
+        ->update([
+            'ablitiy'=> $request->input('ability'),
+            
+                            
+        ]);
+
+        if($user){
+            return redirect()->route('dashboard', ['user'=> $user])
+            ->with('success', 'user has been updated Successfully');
+        }
+        return back()->withInput();
+  
     }
 
     /**

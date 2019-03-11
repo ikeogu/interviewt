@@ -41,7 +41,7 @@ class User extends Authenticatable
        return $this->hasMany('App\Type');
     }
     public function actions(){
-      return  $this->belongsTo('App\Action');
+      return  $this->hasMany('App\Action');
     }
 }
 

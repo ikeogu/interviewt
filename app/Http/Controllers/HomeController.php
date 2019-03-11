@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function admin(Request $req){
+        return view('dashboard')->withMessage("Admin");
+    }
+    public function moderator(Request $req){
+        return view('dashboardm')->withMessage("Moderator");
+    }
+    public function user(Request $req){
+        return view('dashboardu')->withMessage("User");
+    }
 }

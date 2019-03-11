@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Action;
+use Auth;
+use DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ActionController extends Controller
 {
@@ -14,7 +17,7 @@ class ActionController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -35,14 +38,18 @@ class ActionController extends Controller
      */
     public function store(Request $request)
     {
-        $count =new Action();
-        $count=0;
-        $count+=$count;
+       
     
 
-        return back()->with('success', 'you have done a great job');
+       
     }
 
+    public function count(Request $request)
+    {
+        $habit = Auth::user();
+        $habit->increment('value');
+        return back()->with('success', 'you have done a great job');
+    }
     /**
      * Display the specified resource.
      *

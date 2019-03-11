@@ -38,6 +38,7 @@ class UsersTable extends Seeder
             'password' => bcrypt('12345678'),
             'role_id' => '3',
             'type_id' => '2',
+            'ability'=> '1',
             
             
         ]);
@@ -48,6 +49,7 @@ class UsersTable extends Seeder
             'password' => bcrypt('12345678'),
             'role_id' => '3',
             'type_id' => '4',
+            'ability'=> '1',
             
             
         ]);
@@ -58,6 +60,7 @@ class UsersTable extends Seeder
             'password' => bcrypt('12345678'),
             'role_id' => '3',
             'type_id' => '3',
+            'ability'=> '0',
             
             
         ]);
@@ -68,7 +71,7 @@ class UsersTable extends Seeder
             'password' => bcrypt('password'),
             'role_id' => '3',
             'type_id' => '4',
-            
+            'ability'=> '1',
             
         ]);
     }
