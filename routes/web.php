@@ -55,8 +55,8 @@ Route::group(['middleware' => 'App\Http\Middleware\UserMiddleware'], function()
 Route::match(['get', 'post','put'], '/forusers/', 'HomeController@user');
 
 Route::get('/forusers/','HomeController@user');
-Route::Resource('action','ActionController');
-Route::put('/dashboard', 'ActionController@count')->name('count');
+
+Route::resource('action', 'ActionController');
 Route::resource('users','UserController');
 Route::put('users','UserCOntroller@update');
 

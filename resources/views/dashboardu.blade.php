@@ -100,11 +100,11 @@
                             
                         @if (auth()->user()->ability==1)                          
                             
-                        <form method="post" action="{{ route('count') }}">
-                            @method('PUT')
+                        <form method="post" action="{{ route('action.store') }}">
+                            
                             @csrf
-
-                            <button class="" name="submit"  type="submit">Farm</button>
+    
+                            <button class="btn btn-primary"   type="submit">Farm</button>
                         </form>
                          @elseif(auth()->user()->ability==0)  
                          <h3>Sorry! you have been blocked</h3>
