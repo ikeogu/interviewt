@@ -30,7 +30,7 @@ Route::get('/home',function(){
         $users['users'] = App\User::all();
         return view('dashboard',$users);
     }
-});
+})->name('home');
 
 //using middleware 
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
@@ -39,6 +39,7 @@ Route::match(['get', 'post'], '/adminPage/', 'HomeController@admin');
 
 Route::get('/adminPage/','HomeController@admin');
 Route::get('dashboard','Homecontroller@admin')->name('dashboard');
+
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\ModeratorMiddleware'], function()
@@ -51,11 +52,12 @@ Route::get('/moderators/','HomeController@moderator');
 
 Route::group(['middleware' => 'App\Http\Middleware\UserMiddleware'], function()
 {
-Route::match(['get', 'post'], '/forusers/', 'HomeController@user');
+Route::match(['get', 'post','put'], '/forusers/', 'HomeController@user');
 
 Route::get('/forusers/','HomeController@user');
 Route::Resource('action','ActionController');
-Route::put('count', 'ActionController@count')->name('count');
+Route::put('/dashboard', 'ActionController@count')->name('count');
 Route::resource('users','UserController');
+Route::put('users','UserCOntroller@update');
 
 });

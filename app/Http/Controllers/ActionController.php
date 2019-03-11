@@ -46,9 +46,11 @@ class ActionController extends Controller
 
     public function count(Request $request)
     {
-        $habit = Auth::user();
-        $habit->increment('value');
-        return back()->with('success', 'you have done a great job');
+        $user_id = User::find(auth()->user()->id);
+        $user->increment('value');
+        dd($user);
+        $user->save();
+        return redirect(view('dashboardu'))->with('success', 'you have done a great job');
     }
     /**
      * Display the specified resource.

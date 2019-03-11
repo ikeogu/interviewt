@@ -8,6 +8,8 @@
                         <div class="alert alert-success" role="alert">
                         SuperAdmin Dashboard
                                 </div>
+                        
+                        <div class="card-body">
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -17,8 +19,6 @@
 
                             You are logged in!
                         </div>
-                        <div class="card-body">
-                            
                         <table>
                         <th>
                         <td>Name</td>
@@ -33,14 +33,22 @@
                             <td>
                                 <form method="post" action="{{route('users.update',[$user->id])}}">
                                 {{csrf_field()}}
-                                    <select name="ability" >
+                                <input type="hidden" name="_method" value="PATCH">
+                                <div class="row"> 
+                                <div class="col col-lg-8">
+                                    <select name="ability" class="form-control">
                                         <option value="1"> Enable</option>
                                         <option value="0"> Disable</option>
                                     </select>
-                                </form>
-                                <button name="submit" class="btn btn primary">
+                                    </div>
+                                    <div class="col col-lg-4">
+                                    <button type="submit" class="btn primary-btn">
                                     Update
                                 </button>
+                                </div>
+                                </div>
+                                </form>
+                                
                             </td>
                         </tr>
                         @endforeach

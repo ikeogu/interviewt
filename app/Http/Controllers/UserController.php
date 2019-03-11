@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -15,7 +16,7 @@ class UserController extends Controller
     {
        
         $user = User::all();
-        return view('home', ['user'=> $user]);
+        return view('dashboard', ['user'=> $user]);
     }
 
     public function count(){
@@ -74,20 +75,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update( $id)
+    public function update(Request $request, $id)
     {
-        $user = User::findOrFail('id', $id)
-        ->update([
-            'ablitiy'=> $request->input('ability'),
+        $request->validate([
             
+            'ability' => 'required|integer'
+          ]);
+        $users = User::findOrFail($id);
+        
+           $users->ability = $request->get('ability');
+           
+           $users->save(); 
                             
-        ]);
-
-        if($user){
-            return redirect()->route('dashboard', ['user'=> $user])
-            ->with('success', 'user has been updated Successfully');
+        
+               if($users){
+            return redirect(route('home'))->with('success', 'user has been updated Successfully');
         }
-        return back()->withInput();
+        return 'Not Successful';
   
     }
 

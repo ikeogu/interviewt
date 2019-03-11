@@ -103,7 +103,8 @@
                         <form method="post" action="{{ route('count') }}">
                             @method('PUT')
                             @csrf
-                            <input class="" name="submit" value="Farm" type="submit">
+
+                            <button class="" name="submit"  type="submit">Farm</button>
                         </form>
                          @elseif(auth()->user()->ability==0)  
                          <h3>Sorry! you have been blocked</h3>
